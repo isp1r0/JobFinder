@@ -14,4 +14,4 @@ app.get('*', function(req, res){
     res.render('index');
 })
 
-app.listen(3001);
+app.listen(process.env.PORT || 3001);
