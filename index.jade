@@ -10,11 +10,11 @@ body(ng-app='app')
    .container
       div(ng-controller='testCtrl')
          h1 Post a new job
-         form(ng-submit="submit()" ng-model="title")
+         form(ng-submit="submit()")
             .form-group
-               input.form-control(placeholder="Title")
+               input.form-control(placeholder="Title" ng-model="title")
              .form-group
-                textarea.form-control(placeholder="Description")
+                textarea.form-control(placeholder="Description" ng-model="description")
              .form-group
                 button.btn.btn-primary(type="submit") Post
          h1 Find a job today!
