@@ -2,21 +2,19 @@
  * Created by rbailey on 24/10/2014.
  */
 var express = require('express');
-var jobModel = require('./models/Job');
+var app = express();
+
+require('./models/Job');     // Mongoose model, we dont need the return, this script just registers the model with mongoose...
 var jobsData = require('./jobs-data');
 
-var app = express();
+// This adds the api route to express, passing in our Data Access layer (jobsData) express app (app)
+// No need to capture the return value as it just inerts routes in the express app.
+require('./jobs-service')(jobsData, app);
 
 app.set('views', __dirname);
 app.set('view engine', 'jade');
 
 app.use(express.static(__dirname + '/public'));
-
-app.get('/api/jobs', function(req, res){
-    jobsData.findJobs().then(function(collection){
-        res.send(collection);
-    });
-});
 
 app.get('*', function(req, res){
     res.render('index');
